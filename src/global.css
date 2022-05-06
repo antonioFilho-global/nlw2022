@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* O uso da biblioteca tailwind pode ser diretamente no className ou dentro de um arquivo css
+.button {
+    @apply bg-purple-500 px-4 h-10 rounded text-violet-100;
+} */
+
+body {
+    @apply bg-[#09090A] text-zinc-100;
+}
