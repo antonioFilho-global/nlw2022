@@ -10,5 +10,9 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    /* Importando pluguins do TailCSS */
+    require('@tailwindcss/forms'),
+    require('tailwind-scrollbar')
+  ],
 }

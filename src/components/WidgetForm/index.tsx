@@ -49,21 +49,26 @@ export function WidgetForm() {
     /* Salvando como state a categoria de feedback selecionada pelo usuário */ 
     const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null)
 
+    /* Retorna e restarta o tipo de feedback anteriormente escolhido  */
+    function handleRestartFeedback() {
+        setFeedbackType(null)
+    }
+
+
     return (
         /*   A biblioteca é util para fazer a recursividade de maneira prática: w-[calc(100vw-2rem)] md:w-auto */
         <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto">
-            <header>
-                <span className="text-xl leading-6">Deixe seu feedback</span>
-
-                <CloseButton /> 
-            </header>
-
+            
             {/* Selecionando o tipo de feedback */}
             {!feedbackType ? (
                /*  Eviando função de um componente pai para um componente filho fia propriedade*/
                 <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
             ) : (
-                <p>Hello World</p>
+                /* Passando informações entre componentes via propriedade */
+                <FeedbackContentStep 
+                    feedbackType={feedbackType} 
+                    onFeedbackRestartRequested={handleRestartFeedback}
+                />
             )}
             
 
