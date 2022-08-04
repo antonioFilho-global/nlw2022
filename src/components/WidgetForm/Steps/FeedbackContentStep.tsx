@@ -1,6 +1,7 @@
-import { ArrowLeft } from "phosphor-react";
+import { ArrowLeft, Camera } from "phosphor-react";
 import { FeedbackType, feedbackTypes } from ".."
 import { CloseButton } from "../../CloseButton"
+import { ScreenshotButton } from "../ScreenshotButton";
 
 /* Recebendo via props do outro componente */
 interface FeedbackTypeStepProps {
@@ -44,9 +45,25 @@ export function FeedbackContentStep({
                              border-zinc-600 bg-transparent rounded-md 
                              focus:border-brand-500 focus:ring-brand-500 
                              focus:ring-1 focus:outline-none resize-none
-                             scrollbar scrollbar-thumb-zinc-700"
+                             scrollbar scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin"
                     placeholder="Conte com detalhe o que está acontecendo...."
                 />
+
+                <footer className="flex gap-2 mt-2">
+                    {/* Componente da função de tirar print */}
+                    <ScreenshotButton />
+
+                    <button
+                        type="submit"
+                        className="p-2 bg-brand-500 rounded-md border-transparent 
+                                   flex-1 flex justify-center items-center text-sm 
+                                 hover:bg-brand-300 focus:outline-none focus:ring-2 
+                                   focus:ring-offset-2 focus:ring-offset-zinc-900
+                                 focus:ring-brand-500 transition-colors"
+                    >
+                        Enviar Feedback
+                    </button>
+                </footer>
             </form>
         </>
     )
