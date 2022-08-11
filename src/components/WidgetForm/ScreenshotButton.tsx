@@ -1,15 +1,27 @@
+/* Importando ícone de camera */ 
 import { Camera } from "phosphor-react";
 /* Biblioteca que tem a função de tira print */
 import html2canvas from "html2canvas";
+import { useState } from "react";
 
 export function ScreenshotButton() {
+
+    /* Criando status, que representa se está ou não sendo tirado print da tela */
+    const [isTakingScreenshot, setIsTakeingScreenshot] = useState(false);
+
     async function handleTakeScreenshot() {
+        /* Auterando o status para verdadeiro, ou sejá o print está sendo tirado */
+        setIsTakeingScreenshot(true);
+
         const canvas = await html2canvas(document.querySelector('html')!);
         /* Tira um print do contúdo do HTML e salva em PNG no formato  base64, 
         que é um texto que representa a imagem */
         const base64image = canvas.toDataURL('image/png');
 
         console.log(base64image);
+
+        /* Auterando o status para falso, ou sejá o print já foi tirado*/
+        setIsTakeingScreenshot(false);
     }
 
 
