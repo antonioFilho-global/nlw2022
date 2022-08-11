@@ -8,6 +8,7 @@ import ideaImageURL from '../../assets/idea.svg';
 import thoughtImageURL from '../../assets/thought.svg';
 import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
 import { FeedbackTypeStep } from "./Steps/FeedbackTypeStep";
+import { FeedbackSuccessStep } from "./Steps/FeedbackSuccessStep";
 
 /* Criando objeto que contem as categorias de feedbacks */
 export const feedbackTypes = {
@@ -47,7 +48,9 @@ Salvando em forma de vetor, que vai ser percorrido com um .map
 
 export function WidgetForm() {
     /* Salvando como state a categoria de feedback selecionada pelo usuário */ 
-    const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null)
+    const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
+    /* Criando status se o feedback foi enviado ou não */
+    const [feedbackSent, setFeedbackSent] = useState(false);
 
     /* Retorna e restarta o tipo de feedback anteriormente escolhido  */
     function handleRestartFeedback() {
@@ -58,17 +61,25 @@ export function WidgetForm() {
     return (
         /*   A biblioteca é util para fazer a recursividade de maneira prática: w-[calc(100vw-2rem)] md:w-auto */
         <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto">
-            
-            {/* Selecionando o tipo de feedback */}
-            {!feedbackType ? (
-               /*  Eviando função de um componente pai para um componente filho fia propriedade*/
-                <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
+            {/* Se o feedback já foi enviado com Sucesso será exibido o componente FeedbackSuccessStep  */}
+            {feedbackSent ? (
+                <FeedbackSuccessStep />
             ) : (
-                /* Passando informações entre componentes via propriedade */
-                <FeedbackContentStep 
-                    feedbackType={feedbackType} 
-                    onFeedbackRestartRequested={handleRestartFeedback}
-                />
+                /* Se não será exibido o fluxo de seleção de tipo de feedback */
+                <>
+                    {/* Selecionando o tipo de feedback */}
+                    {!feedbackType ? (
+                        /*  Eviando função de um componente pai para um componente filho fia propriedade*/
+                        <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
+                    ) : (
+                        /* Passando informações entre componentes via propriedade */
+                        <FeedbackContentStep
+                            feedbackType={feedbackType}
+                            onFeedbackRestartRequested={handleRestartFeedback}
+                            onFeedbackSent={() => setFeedbackSent(true)}
+                        />
+                    )}
+                </>
             )}
             
 
