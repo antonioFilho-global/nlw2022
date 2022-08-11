@@ -5,6 +5,7 @@ import html2canvas from "html2canvas";
 import { useState } from "react";
 /* Componente que contem ícone de Loading */
 import { Loading } from "../Loading";
+
 /* Enviado o print para outro unmountComponentAtNode, no caso FeedbackContentStep */
 interface ScreenshotButtonProps {
     screenshot: string | null;
