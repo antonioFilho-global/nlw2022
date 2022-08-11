@@ -1,5 +1,5 @@
 import { ArrowLeft, Camera } from "phosphor-react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { FeedbackType, feedbackTypes } from ".."
 import { CloseButton } from "../../CloseButton"
 import { ScreenshotButton } from "../ScreenshotButton";
@@ -15,12 +15,22 @@ export function FeedbackContentStep({
     onFeedbackRestartRequested 
 } : FeedbackTypeStepProps ) {
    /*  Pegando a imagem de print vinda do componente ScreenshotButton */
-    const [Screenshot, setScreenshot] = useState<string | null>(null);
+    const [screenshot, setScreenshot] = useState<string | null>(null);
+    /* Pegando o comentário escrito */ 
+    const [comment, setComment] = useState('');
 
     /* recebendo dados de outro componente */
     const feedbackTypeInfo = feedbackTypes[feedbackType];
     
-    
+    /* Pegando os dados do comentário escrito e do print */
+    function handleSubmitFeedback(event: FormEvent) {
+        event.preventDefault();
+        console.log({
+            screenshot,
+            comment,
+        })
+    }
+
     return (
         <>
             <header>
@@ -41,7 +51,7 @@ export function FeedbackContentStep({
             </header>
 
 
-            <form className="my-4 w-full">
+            <form onSubmit={handleSubmitFeedback} className="my-4 w-full">
                 <textarea
                     /* A caixa de texto vai ter uma largura mínima dew 304px e altura minima de 112px*/
                     className="min-w-[304px] w-full min-h-[112px] text-sm 
@@ -51,17 +61,21 @@ export function FeedbackContentStep({
                              focus:ring-1 focus:outline-none resize-none
                              scrollbar scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin"
                     placeholder="Conte com detalhe o que está acontecendo...."
+                    /* Cada vez que o usuário digitar na textarea, será pegado o evento de digitação trazendo o texto*/
+                    onChange={event => setComment(event.target.value)}
                 />
 
                 <footer className="flex gap-2 mt-2">
                     {/* Componente da função de tirar print */}
                     <ScreenshotButton 
-                        screenshot={Screenshot}
+                        screenshot={screenshot}
                         onScreenshotTook={setScreenshot}
                     />
 
                     <button
                         type="submit"
+                        /* desabilitando o envio do feedback, caso não tennha nada digitado */
+                       /*  disabled={} */
                         className="p-2 bg-brand-500 rounded-md border-transparent 
                                    flex-1 flex justify-center items-center text-sm 
                                  hover:bg-brand-300 focus:outline-none focus:ring-2 

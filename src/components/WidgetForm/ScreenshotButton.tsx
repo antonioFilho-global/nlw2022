@@ -5,10 +5,6 @@ import html2canvas from "html2canvas";
 import { useState } from "react";
 /* Componente que contem ícone de Loading */
 import { Loading } from "../Loading";
-import { unmountComponentAtNode } from "react-dom";
-import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
-import { backgroundPosition } from "html2canvas/dist/types/css/property-descriptors/background-position";
-
 /* Enviado o print para outro unmountComponentAtNode, no caso FeedbackContentStep */
 interface ScreenshotButtonProps {
     screenshot: string | null;
