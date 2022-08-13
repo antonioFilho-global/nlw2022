@@ -54,7 +54,8 @@ export function WidgetForm() {
 
     /* Retorna e restarta o tipo de feedback anteriormente escolhido  */
     function handleRestartFeedback() {
-        setFeedbackType(null)
+        setFeedbackSent(false);
+        setFeedbackType(null);
     }
 
 
@@ -63,7 +64,7 @@ export function WidgetForm() {
         <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto">
             {/* Se o feedback já foi enviado com Sucesso será exibido o componente FeedbackSuccessStep  */}
             {feedbackSent ? (
-                <FeedbackSuccessStep />
+                <FeedbackSuccessStep  onFeedbackRestartRequested={handleRestartFeedback} />
             ) : (
                 /* Se não será exibido o fluxo de seleção de tipo de feedback */
                 <>
