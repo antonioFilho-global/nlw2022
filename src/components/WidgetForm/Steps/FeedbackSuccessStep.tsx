@@ -31,7 +31,7 @@ export function FeedbackSuccessStep({
                                    disabled:opacity-50 disabled:hover:bg-brand-500"
                 >
                     Quero Enviar Outro
-                </button>
+                </button >
             </div>
        </>
     )
