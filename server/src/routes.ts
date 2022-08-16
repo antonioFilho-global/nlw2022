@@ -18,6 +18,15 @@ const transport = nodemailer.createTransport({
 });
 
 
+// GET, POST, PUT, PATCH, DELETE
+
+// GET = Buscar Informação
+// POST = Cadastrar Informação
+// PUT = Atualizar informação
+// PATCH = Atualizar uma informação única de uma entidade
+// DELETE = Deletar uma Informação
+
+
 /* Rota cadastro de feedbacks*/
 routes.post('/feedbacks', async(req, res) => {
     const { type, comment, screenshot } = req.body 
