@@ -1,16 +1,16 @@
-//Primeiro teste
-/*  
-test('sum 2 + 2', () => {
-    expect(2 + 2).toBe(4)
-}); */
-
 import { SubmitFeedbackUseCase } from "./submit-feedback-use-case";
+
+//spies = espiões
+//É utilizado para verificar se funções foram chamadas 
+
+const createFeedbackSpy = jest.fn();
+const sendMailSpy = jest.fn();
 
 const submitFeedback = new SubmitFeedbackUseCase(
     /* Testando sem depender de Banco de dados ou API's externas */
     /* Teste Mockado */
-    { create: async () => {} },
-    { sendMail: async () => {} }
+    { create: createFeedbackSpy },
+    { sendMail: sendMailSpy }
 )
 
 
@@ -25,6 +25,9 @@ describe('Submit feedback', () => {
             screenshot: 'data:image/png;base64,6544848415484484u',
         /* O resultado da promise não contenha erros*/
         })).resolves.not.toThrow();
+
+        expect(createFeedbackSpy).toHaveBeenCalled();
+        expect(sendMailSpy).toHaveBeenCalled();
     });
 
 

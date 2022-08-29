@@ -1,9 +1,11 @@
 import express from 'express' 
+import cors from 'cors';
 import { routes } from './routes';
 
 /* Iniciando o express */
 const app = express();
-
+/* ferramenta de segurança */
+app.use(cors());
 /* Configurando o express para receber JSON */
 app.use(express.json());
 /* Importando as rotas */
