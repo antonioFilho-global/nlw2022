@@ -1,7 +1,3 @@
-import e from 'express';
-import nodemailer from 'nodemailer'
-import { prisma } from './prisma';
-
 import express from 'express';
 import { SubmitFeedbackUseCase } from './use-cases/submit-feedback-use-case';
 import { PrismaFeedbacksRepository } from './repositories/prisma/prisma-feedbacks-repository';
